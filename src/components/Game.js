@@ -1,9 +1,12 @@
 import React from "react";
 
+import Board from "./Board";
+
 function Game(props) {
 
   return (
-    <div>
+    <div className = "Game">
+      <Board />
     </div>
   );
 }
