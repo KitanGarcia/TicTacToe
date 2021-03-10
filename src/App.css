@@ -6,6 +6,31 @@ body {
 .App {
   text-align: center;
   background-color: #1a1a1e;
-  width: 100vw;
   height: 100vh;
+  width: 100vw;
+}
+
+.Game {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Board {
+  height: 400px;
+  width: 400px;
+  position: absolute; /*so board does not collapse when shrunk. Gets cut off instead*/
+}
+
+.row {
+  height: 33%;
+  margin-bottom: 5px;
+}
+
+.Cell {
+  height: 100%;
+  width: 32%;
+  margin-left: 5px;
 }

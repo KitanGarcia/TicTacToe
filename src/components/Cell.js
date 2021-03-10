@@ -1,10 +1,12 @@
 import React from "react";
 
-function Cell(props) {
-  return (
-    <div className = "cell">
-    </div>
-  );
-}
+const Cell = (props) => (
+  <button
+    className = "Cell"
+    onClick = {props.onClick}
+  >
+  {props.value}
+  </button>
+);
 
 export default Cell;
