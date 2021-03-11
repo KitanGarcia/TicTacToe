@@ -17,8 +17,10 @@ const Game = (props) => {
       return;
     }
 
+    console.log(i);
     //put an X or O in the clicked square
     boardCopy[i] = xIsNext ? "X" : "O";
+    console.log(boardCopy);
     setBoard(boardCopy); //set board to new state
     setXIsNext(!xIsNext); //switch players
   }
@@ -59,6 +61,8 @@ const Game = (props) => {
 
   const winner = calculateWinner(board);
 
+  console.log("hi")
+  console.log(board)
 
   return (
     <div className = "Game">

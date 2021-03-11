@@ -37,4 +37,5 @@ body {
   border-radius: 20px;
   border: none;
   outline: none;
+  vertical-align: top;
 }
