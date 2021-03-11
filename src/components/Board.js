@@ -1,23 +1,24 @@
 import React from "react";
 
-import Cell from "./Cell.js"
+import Cell from "./Cell.js";
 
-const Board = (props) => (
+//Renders cell components, receiving squares and the onClick function from Game
+const Board = ({ squares, onClick }) => (
   <div className = "Board">
     <div className = "row">
-      <Cell value = "1"/>
-      <Cell value = "2"/>
-      <Cell value = "3"/>
+      <Cell value = "1" onClick = {() => onClick()}/>
+      <Cell value = "2" onClick = {() => onClick()}/>
+      <Cell value = "3" onClick = {() => onClick()}/>
     </div>
     <div className = "row">
-      <Cell value = "4"/>
-      <Cell value = "5"/>
-      <Cell value = "6"/>
+      <Cell value = "4" onClick = {() => onClick()}/>
+      <Cell value = "5" onClick = {() => onClick()}/>
+      <Cell value = "6" onClick = {() => onClick()}/>
     </div>
     <div className = "row">
-      <Cell value = "7"/>
-      <Cell value = "8"/>
-      <Cell value = "9"/>
+      <Cell value = "7" onClick = {() => onClick()}/>
+      <Cell value = "8" onClick = {() => onClick()}/>
+      <Cell value = "9" onClick = {() => onClick()}/>
     </div>
   </div>
 );

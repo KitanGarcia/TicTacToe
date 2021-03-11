@@ -1,11 +1,12 @@
 import React from "react";
 
-const Cell = (props) => (
+//Renders cell component taking in a destructured value and onClick function
+const Cell = ({ value, onClick }) => (
   <button
     className = "Cell"
-    onClick = {props.onClick}
+    onClick = {onClick}
   >
-  {props.value ? props.value : "L"}
+  {value ? value : null}
   </button>
 );
 
