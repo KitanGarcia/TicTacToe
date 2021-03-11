@@ -16,12 +16,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .Board {
   height: 400px;
   width: 400px;
-  position: absolute; /*so board does not collapse when shrunk. Gets cut off instead*/
 }
 
 .row {

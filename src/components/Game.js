@@ -27,6 +27,11 @@ const Game = (props) => {
   }
 
   const renderMoves = () => {
+    return (
+      <button onClick = {() => setBoard(Array(9).fill(null))}>
+        Start Game
+      </button>
+    );
   }
 
   //Should return X, O, or null as winner
@@ -58,6 +63,8 @@ const Game = (props) => {
   return (
     <div className = "Game">
       <Board cells = {board} onClick = {handleClick} />
+      <p>{winner ? "Winner: " + winner : "Next Player: " + (xIsNext ? "X" : "O")}</p>
+      {renderMoves()}
     </div>
   );
 }
