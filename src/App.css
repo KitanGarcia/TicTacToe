@@ -26,11 +26,15 @@ body {
 
 .row {
   height: 33%;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .Cell {
   height: 100%;
-  width: 32%;
-  margin-left: 5px;
+  width: 30%;
+  margin-left: 10px;
+  font-size: 70px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
 }

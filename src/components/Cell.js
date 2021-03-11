@@ -5,7 +5,7 @@ const Cell = (props) => (
     className = "Cell"
     onClick = {props.onClick}
   >
-  {props.value}
+  {props.value ? props.value : "L"}
   </button>
 );
 
