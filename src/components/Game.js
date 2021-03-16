@@ -3,41 +3,57 @@ import React, { useState } from "react";
 import Board from "./Board";
 
 const Game = (props) => {
-  const [board, setBoard] = useState(new Array(9).fill(null));
+  //history will be an array of arrays (with each element being a board state)
+  const [history, setHistory] = useState([new Array(9).fill(null)]);
+  const [stepNumber, setStepNumber] = useState(0); //what turn we are on so we can jump to/from it
   const [xIsNext, setXIsNext] = useState(true);
 
 
   //this is the handleClick that will be passed down to the other components
   const handleClick = i => {
-    //create copy of board
-    const boardCopy = [...board];
+    const timeInHistory = history.slice(0, stepNumber + 1); //get the most recent or last jumped to board state
+    const current = timeInHistory[stepNumber]; //get the current or jumped to move
+
+    const cells = [...current]; //copy the current state we are mutating
 
     //if user clicks an occupied square or if the game is over
-    if (winner || boardCopy[i]) {
+    if (winner || cells[i]) {
       return;
     }
 
-    console.log(i);
     //put an X or O in the clicked square
-    boardCopy[i] = xIsNext ? "X" : "O";
-    console.log(boardCopy);
-    setBoard(boardCopy); //set board to new state
+    cells[i] = xIsNext ? "X" : "O";
+    setHistory([...timeInHistory, cells]); //set history to time in history and add the most recent state.
+    setStepNumber(timeInHistory.length); //get which step we are on
     setXIsNext(!xIsNext); //switch players
   }
 
-  const jumpTo = () => {
+  const jumpTo = (move) => {
+    setStepNumber(move);
+    setXIsNext(move % 2 === 0); //set to true or false if turn is even or odd (so we know to use X or O
   }
 
   const renderMoves = () => {
+    //_step since we are not using steps, just move
     return (
-      <button onClick = {() => setBoard(Array(9).fill(null))}>
-        Start Game
-      </button>
+      <ul>
+        {history.map((_step, move) => {
+          const destination = move ? `Go to move #${move}` : "Go to start";
+          return (
+            <li key = {move} className = "moves">
+              <button onClick = {() => jumpTo(move)}>
+                {destination}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     );
   }
 
   //Should return X, O, or null as winner
-  const calculateWinner = (board) => {
+  //takes in the last step element of history, which is the most recent board state
+  const calculateWinner = (boardState) => {
     const winningRows = [
       [0, 1, 2],
       [3, 4, 5],
@@ -52,26 +68,23 @@ const Game = (props) => {
     for (let i = 0; i < winningRows.length; i++) {
       const [a, b, c] = winningRows[i];
 
-      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-        return board[a];
+      if (boardState[a] && boardState[a] === boardState[b] && boardState[a] === boardState[c]) {
+        return boardState[a];
       }
     }
+    return null;
   }
 
 
-  const winner = calculateWinner(board);
-
-  console.log("hi")
-  console.log(board)
+  const winner = calculateWinner(history[stepNumber]);
 
   return (
     <div className = "Game">
-      <Board cells = {board} onClick = {handleClick} />
+      <Board cells = {history[stepNumber]} onClick = {handleClick} />
       <p>{winner ? "Winner: " + winner : "Next Player: " + (xIsNext ? "X" : "O")}</p>
       {renderMoves()}
     </div>
   );
 }
-
 
 export default Game;

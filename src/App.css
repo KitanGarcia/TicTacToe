@@ -22,6 +22,7 @@ body {
 .Board {
   height: 400px;
   width: 400px;
+  margin-bottom: 20px;
 }
 
 .row {
@@ -38,4 +39,12 @@ body {
   border: none;
   outline: none;
   vertical-align: top;
+}
+
+ul {
+  text-align: left;
+}
+
+.moves {
+  margin-bottom: 10px;
 }
